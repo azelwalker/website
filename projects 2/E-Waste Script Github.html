@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form Example</title>
+</head>
+<body>
+
+<form id= "form1" action="mailto:exampleEmail@gmail.com?subject=exampleSubject" method="post" enctype="text/plain">
+Amount of Items:
+<br>
+<input type="number" id="itemAmount" value="1" min="1" max="99" maxLength="2">
+<input type="button" value="Update" onclick=amountOfItems()>
+<br>
+E-Waste Items:
+<br> 
+<input type="text" name="Items for Donations" value=" ie Phone" color="#d3d3d3"
+       style="background-color:white;
+              vertical-align:9px;
+              color:#bbb" 
+        onfocus="if(this.value == ' ie Phone') {
+                    this.value = '';
+                    this.style.color='#000';
+                 }">
+<br>
+Available Date to Meet: 
+<input type="date" name="Date" value="5/11/16">
+<br>
+Available Time to Meet: 
+<input type="time" name="Time" value="10:30:00">
+<br>
+<input type="submit" value="Submit">
+</form>
+
+<script>
+var amount = 1;
+
+function amountOfItems(){
+	amount = document.getElementById("itemAmount").value;
+	//alert(amount);
+	if(amount <= 50){
+		//Get rid of the unneeded stuff
+		while(form1.hasChildNodes()){
+			form1.removeChild(form1.lastChild);
+		}
+
+		//Set up the old unneeded stuff
+		form1.appendChild(document.createTextNode("Amount of Items:"));
+		form1.appendChild(document.createElement("br"));
+		var aOI = document.createElement("input");
+		aOI.type = "number";
+		aOI.id = "itemAmount";
+		aOI.value = amount;
+		aOI.min = "1";
+		aOI.max = "50";
+		form1.appendChild(aOI);
+
+		form1.appendChild(document.createTextNode(" "));
+
+		var update = document.createElement("input");
+		update.type = "button";
+		update.value = "Update";
+		update.onclick = "amountOfItems()";
+		form1.appendChild(update);
+
+
+		form1.appendChild(document.createElement("br"));
+		//Create the update button here
+
+		form1.appendChild(document.createTextNode("E-Waste Items: "));
+		form1.appendChild(document.createElement("br"));
+
+
+		//Set the amount of Items
+		for(i=0;i<amount;i++){
+			
+			//form1.appendChild(document.createTextNode("Item " + (i+1) + " "));
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "Item " + i;
+			input.value = "";
+
+			form1.appendChild(input);
+			form1.appendChild(document.createElement("br"));
+
+			/*
+			onfocus="if(this.value == ' ie Phone') {
+                    this.value = '';
+                    this.style.color='#000';
+                 }"
+			*/
+		}
+
+		form1.appendChild(document.createTextNode("Available Date to Meet: "));
+		var dateI = document.createElement("input");
+		dateI.type = "date";
+		dateI.name = "Date ";
+
+		form1.appendChild(dateI);
+		form1.appendChild(document.createElement("br"));
+
+
+		form1.appendChild(document.createTextNode("Available Time to Meet: "));
+		var timeI = document.createElement("input");
+		timeI.type = "time";
+		timeI.name = "Time";
+		timeI.value = "10:30:00";
+
+		form1.appendChild(timeI);
+		form1.appendChild(document.createElement("br"));
+
+		var submitI = document.createElement("input");
+		submitI.type = "submit";
+		submitI.value = "Submit";
+
+		form1.appendChild(submitI);
+	}
+}
+
+</script>
+</body>
+</html>
